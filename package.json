@@ -1,0 +1,13 @@
+{
+  "name": "french-compass-exam-books",
+  "version": "1.0.0",
+  "private": true,
+  "description": "French Compass exam preparation book storefront",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

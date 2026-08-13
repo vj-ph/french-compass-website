@@ -1,0 +1,67 @@
+---
+layout: base
+pagination:
+  data: locales
+  size: 1
+  alias: locale
+permalink: "{{ locale.url }}"
+---
+{% set copy = locale.copy %}
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <p class="eyebrow">{{ copy.heroEyebrow }}</p>
+      <h1>{{ copy.heroTitle }}</h1>
+      <p class="hero-copy">{{ copy.heroCopy }}</p>
+      <div class="actions">
+        <a class="button" href="#livres">{{ copy.booksCta }}</a>
+        <a class="button button-ghost" href="#examens">{{ copy.examsCta }}</a>
+      </div>
+      <p class="hero-note">{{ copy.heroNote }}</p>
+      <div class="hero-languages" aria-label="{{ copy.languageTitle }}">
+        {% for language in locales %}
+        <a href="{{ language.url }}"{% if language.code == locale.code %} aria-current="page"{% endif %}>{{ language.label }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust-strip"><div class="container trust-items">{% for item in copy.trust %}<span>✓ {{ item }}</span>{% endfor %}</div></section>
+
+<section id="livres" class="section">
+  <div class="container">
+    <div class="section-heading"><p class="eyebrow">{{ copy.catalogEyebrow }}</p><h2>{{ copy.catalogTitle }}</h2><p>{{ copy.catalogCopy }}</p></div>
+    <div class="book-grid">
+      {% for book in site.books %}
+      {% set focus = copy.combined if book.focus == 'Oral + écrit' else (copy.speaking if book.focus == 'Expression orale' else copy.writing) %}
+      <article class="book-card">
+        <img class="book-cover" src="/assets/thumbnails/{{ book.thumbnail }}" alt="{{ copy.coverAlt }} {{ book.title }}" width="400" height="600" loading="lazy">
+        <div class="book-content">
+          <p class="book-meta">{{ copy[book.market] }} · {{ focus }}</p>
+          <h3>{{ book.title }}</h3><p>{{ book.description }}</p>
+          <div class="book-footer">
+            <a class="purchase-link" href="https://www.{{ book.paperback.store }}/dp/{{ book.paperback.asin }}" target="_blank" rel="noopener noreferrer"><span>{{ copy.paperback }}</span><strong>{{ book.paperback.price }}</strong></a>
+            <a class="purchase-link purchase-link-ebook" href="https://www.{{ book.ebook.store }}/dp/{{ book.ebook.asin }}" target="_blank" rel="noopener noreferrer"><span>{{ copy.kindle }}</span><strong>{{ book.ebook.price }}</strong></a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="examens" class="section section-tint"><div class="container">
+  <div class="section-heading"><p class="eyebrow">{{ copy.examsEyebrow }}</p><h2>{{ copy.examsTitle }}</h2></div>
+  <div class="path-grid">
+    <article id="tcf-irn" class="path-card"><p class="path-label">{{ copy.France }}</p><h3>TCF IRN</h3><p>{{ copy.tcfCopy }}</p><ul>{% for point in copy.tcfPoints %}<li>{{ point }}</li>{% endfor %}</ul><a class="text-link" href="#livres">{{ copy.tcfLink }} →</a></article>
+    <article id="tef-canada" class="path-card"><p class="path-label">{{ copy.Canada }}</p><h3>TEF Canada</h3><p>{{ copy.tefCopy }}</p><ul>{% for point in copy.tefPoints %}<li>{{ point }}</li>{% endfor %}</ul><a class="text-link" href="#livres">{{ copy.tefLink }} →</a></article>
+  </div>
+</div></section>
+
+<section id="pourquoi" class="section"><div class="container method-grid">
+  <div><p class="eyebrow">{{ copy.methodEyebrow }}</p><h2>{{ copy.methodTitle }}</h2><p>{{ copy.methodCopy }}</p></div>
+  <ol class="steps">{% for step in copy.steps %}<li><div><strong>{{ step[0] }}</strong><span>{{ step[1] }}</span></div></li>{% endfor %}</ol>
+</div></section>
+
+<section class="cta"><div class="container"><p class="eyebrow">{{ copy.ctaEyebrow }}</p><h2>{{ copy.ctaTitle }}</h2><p>{{ copy.ctaCopy }}</p><a class="button" href="#livres">{{ copy.ctaButton }}</a></div></section>

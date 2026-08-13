@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="{{ locale.htmlLang }}" dir="{{ locale.dir }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ locale.copy.heroTitle }} | French Compass</title>
+    <meta name="description" content="{{ locale.copy.heroCopy }}">
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{{ locale.copy.skip }}</a>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="{{ locale.url }}" aria-label="French Compass">
+          <img src="/assets/logo.png" width="64" height="64" alt="">
+          <span>
+            <strong>French Compass</strong>
+            <small>{{ locale.copy.brandSubtitle }}</small>
+          </span>
+        </a>
+        <nav aria-label="Navigation">
+          <a href="{{ locale.url }}#livres">{{ locale.copy.navBooks }}</a>
+          <a href="{{ locale.url }}#examens">{{ locale.copy.navExams }}</a>
+          <a href="{{ locale.url }}#pourquoi">{{ locale.copy.navMethod }}</a>
+        </nav>
+        <a class="button button-small" href="{{ locale.url }}#livres">{{ locale.copy.navCta }}</a>
+      </div>
+    </header>
+    <main id="main">
+      {{ content | safe }}
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <strong>French Compass</strong>
+          <p>{{ locale.copy.footerCopy }}</p>
+        </div>
+        <div>
+          <strong>{{ locale.copy.footerPaths }}</strong>
+          <a href="{{ locale.url }}#tcf-irn">TCF IRN — {{ locale.copy.France }}</a>
+          <a href="{{ locale.url }}#tef-canada">TEF Canada</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">© 2026 French Compass. {{ locale.copy.rights }}</div>
+    </footer>
+  </body>
+</html>
