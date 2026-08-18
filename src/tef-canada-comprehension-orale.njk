@@ -1,0 +1,80 @@
+---
+layout: listening-base
+pagination:
+  data: tefListening.pages
+  size: 1
+  alias: listeningPage
+permalink: "{{ listeningPage.permalink }}"
+---
+<section class="listening-hero">
+  <div class="container">
+    <p class="eyebrow">Lecteur compagnon</p>
+    <h1>{{ listeningPage.title }}</h1>
+    <p>{{ listeningPage.description }}</p>
+    {% if listeningPage.kind != "hub" %}<a class="text-link" href="/tef-canada-comprehension-orale/">← Retour à l’accueil audio</a>{% endif %}
+  </div>
+</section>
+
+{% if listeningPage.kind == "hub" %}
+<section class="section">
+  <div class="container">
+    <div class="reader-note">
+      <strong>Comment synchroniser avec le livre</strong>
+      <p>Ouvrez le même chapitre ou examen blanc que dans votre livre. Chaque lecteur affiche le numéro de question imprimé; les grilles illustrées apparaissent avec les questions correspondantes.</p>
+    </div>
+    <div class="reader-nav-grid">
+      {% for chapter in tefListening.chapters %}
+      <a class="reader-nav-card" href="{{ chapter.permalink }}">
+        {% if chapter.kind == "mocks-index" %}
+        <span>6 examens</span>
+        {% else %}
+        <span>{{ chapter.tracks.length }} enregistrements</span>
+        {% endif %}
+        <h2>{{ chapter.title }}</h2>
+        <p>{{ chapter.description }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% elif listeningPage.kind == "mocks-index" %}
+<section class="section"><div class="container">
+  <div class="reader-nav-grid reader-nav-grid-mocks">
+    {% for mock in tefListening.mocks %}
+    <a class="reader-nav-card" href="{{ mock.permalink }}">
+      <span>40 questions</span><h2>{{ mock.title }}</h2><p>{{ mock.tracks.length }} enregistrements dans l’ordre du livre.</p>
+    </a>
+    {% endfor %}
+  </div>
+</div></section>
+{% else %}
+<section class="section section-tint"><div class="container">
+  <div class="reader-note"><strong>Ordre du livre</strong><p>Les enregistrements ci-dessous suivent l’ordre des exercices imprimés. Une même piste peut servir à deux questions.</p></div>
+  <div class="track-list">
+    {% for track in listeningPage.tracks %}
+    {% if track.extensionStart %}
+    <div class="reader-note">
+      <strong>Activités NCLC 8 Plus</strong>
+      <p>La série reprend les sections 5 à 8 avec des questions d’approfondissement sur de nouveaux enregistrements.</p>
+    </div>
+    {% endif %}
+    <article class="audio-track" id="{{ track.trackId }}">
+      <div class="track-copy">
+        {% if track.questionLabel %}
+        <h2>{{ track.label }}</h2>
+        <p class="track-meta">{{ track.questionLabel }}{% if track.level == "NCLC 8 Plus" %} · NCLC 8 Plus{% endif %}</p>
+        {% else %}
+        <p class="track-meta">{{ track.reference }}{% if track.level == "NCLC 8 Plus" %} · NCLC 8 Plus{% endif %}{% if track.shared %} · enregistrement partagé{% endif %}</p>
+        <h2>{{ track.label }}</h2>
+        {% endif %}
+        <audio controls preload="none" src="{{ track.audio }}">Votre navigateur ne prend pas en charge l’audio HTML5.</audio>
+        <a class="download-link" href="{{ track.audio }}" download>Télécharger le MP3</a>
+      </div>
+      {% if track.image %}
+      <figure class="track-image"><img src="{{ track.image }}" alt="{{ track.imageAlt }}" loading="lazy"></figure>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </div>
+</div></section>
+{% endif %}

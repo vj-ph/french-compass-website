@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ listeningPage.title }} | French Compass</title>
+    <meta name="description" content="{{ listeningPage.description }}">
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="/" aria-label="French Compass">
+          <img src="/assets/logo.png" width="64" height="64" alt="">
+          <span><strong>French Compass</strong><small>Préparation aux examens</small></span>
+        </a>
+        <nav aria-label="Navigation du lecteur">
+          <a href="/tef-canada-comprehension-orale/">Accueil audio</a>
+          <a href="/tef-canada-comprehension-orale/messages-courts/">Chapitres</a>
+          <a href="/tef-canada-comprehension-orale/examens-blancs/">Examens blancs</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">{{ content | safe }}</main>
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div><strong>French Compass</strong><p>Lecteur compagnon du livre TEF Canada : Compréhension orale.</p></div>
+        <div><strong>Navigation</strong><a href="/tef-canada-comprehension-orale/">Accueil audio</a><a href="/tef-canada-comprehension-orale/examens-blancs/">Examens blancs</a></div>
+      </div>
+      <div class="container footer-bottom">© 2026 French Compass. Tous droits réservés.</div>
+    </footer>
+  </body>
+</html>

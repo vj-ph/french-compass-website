@@ -116,3 +116,31 @@ html[dir="rtl"] .hero-languages { justify-content: flex-end; }
   .book-grid { grid-template-columns: 1fr; }
   .trust-items { justify-content: flex-start; }
 }
+
+.listening-hero { padding: clamp(3.5rem, 8vw, 6.5rem) 0; color: white; background: linear-gradient(135deg, #10233f, #174a8b); }
+.listening-hero h1 { max-width: 50rem; margin-bottom: 1rem; }
+.listening-hero > .container > p:not(.eyebrow) { max-width: 48rem; margin-bottom: 1.5rem; color: rgba(255,255,255,.82); font-size: 1.1rem; }
+.listening-hero .text-link { color: var(--gold); }
+.reader-note { margin-bottom: 2rem; padding: 1.1rem 1.25rem; border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0; background: white; box-shadow: 0 8px 20px rgba(16,35,63,.05); }
+.reader-note p { margin: .35rem 0 0; color: var(--muted); }
+.reader-nav-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.reader-nav-grid-mocks { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.reader-nav-card { display: block; min-height: 13rem; padding: 1.6rem; border: 1px solid var(--line); border-top: 5px solid var(--blue); border-radius: 12px; background: white; box-shadow: 0 8px 20px rgba(16,35,63,.05); color: var(--ink); text-decoration: none; transition: transform .2s, box-shadow .2s; }
+.reader-nav-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.reader-nav-card span, .track-meta { color: var(--red); font-size: .76rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.reader-nav-card h2 { margin: .55rem 0; font-size: 1.55rem; }
+.reader-nav-card p { color: var(--muted); }
+.track-list { display: grid; gap: 1rem; }
+.audio-track { display: grid; grid-template-columns: minmax(0, 1fr) minmax(250px, 420px); gap: 1.5rem; align-items: center; padding: 1.25rem; border: 1px solid var(--line); border-radius: 12px; background: white; }
+.audio-track:only-child, .audio-track:not(:has(.track-image)) { grid-template-columns: 1fr; }
+.track-copy h2 { margin: .35rem 0; font-size: 1.3rem; }
+.track-copy > p:not(.track-meta) { color: var(--muted); }
+.track-copy audio { display: block; width: min(100%, 42rem); margin-top: 1rem; }
+.download-link { display: inline-block; margin-top: .55rem; color: var(--blue); font-size: .85rem; font-weight: 800; }
+.track-image { margin: 0; }
+.track-image img { display: block; width: 100%; border-radius: 8px; border: 1px solid var(--line); }
+.track-image figcaption { margin-top: .4rem; color: var(--muted); font-size: .78rem; }
+
+@media (max-width: 800px) {
+  .reader-nav-grid, .reader-nav-grid-mocks, .audio-track { grid-template-columns: 1fr; }
+}
